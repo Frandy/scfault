@@ -1,0 +1,47 @@
+* sc biquad
+* page 80, figure 3.12 a
+
+.param mc_c1 mc_mc1m1
+.param mc_ct mc_mctm3
+.param mc_c2 mc_mc2m4
+.param mc_c3 mc_mc3m5
+.param mc_c4 mc_mc4m6
+
+Vin 1 0 DC 0 AC 1
+
+S1 1 2 1
+S2 2 0 2
+S3 3 0 2
+S4 3 4 1
+
+S5 5 6 1
+S6 6 0 2
+S7 7 0 1
+S8 7 8 2
+
+X1 OPAMP 5 0 0 4
+X2 OPAMP 9 0 0 8
+
+S9 4 10 1
+S10 10 0 2
+S11 11 0 2
+S12 11 9 1
+
+S13 8 12 1
+S14 12 0 2
+S15 13 0 2
+S16 13 9 1
+
+CA 4 5 1 LEVEL = 1
+CB 8 9 1 LEVEL = 1
+C1 2 3 mc_c1 LEVEL = 1
+Ct 1 8 mc_ct LEVEL = 1
+C2 10 11 mc_c2 LEVEL = 1
+C3 6 7 mc_c3 LEVEL = 1
+C4 12 13 mc_c4 LEVEL = 1
+
+.clock 100k
+.ac lin 40 1k 41k
+.print AC V(9)
+.sc VEO 
+.end
